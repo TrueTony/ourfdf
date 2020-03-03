@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/03 18:36:02 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:02:55 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct  s_fdf
     void    *mlx_ptr;
     void    *win_ptr;
     int     chchchaaanges;
+    int     isom;
+    float    angle;
 }               t_fdf;
 
 void    read_file(char *file_name, t_fdf *data);

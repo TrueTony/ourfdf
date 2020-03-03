@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/03 18:58:05 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:07:09 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int		modn(int a)
 	return (a);
 }
 
-void	isometric(float *x, float *y, int z)
+void	isometric(float *x, float *y, int z, float angle)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	*x = (*x - *y) * cos(angle);
+	*y = (*x + *y) * sin(angle) - z;
 }
 
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
@@ -53,12 +53,15 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	y1 *= data->zoom;
 
 	//printf("z:%d %d\n", z, z1);
-	data->color1 = (z || z1) ? data->color1 : data->color2;
+	data->color1 = (z || z1) ? 0x87CEEB : 0xFF1493;
 	//data->color1;
 	//data->color;
 
-	isometric(&x, &y, z);
-	isometric(&x1, &y1, z1);
+	if (data->isom)
+	{
+		isometric(&x, &y, z, data->angle);
+		isometric(&x1, &y1, z1, data->angle);
+	}
 
 	x += data->shift_x;
 	y += data->shift_y;

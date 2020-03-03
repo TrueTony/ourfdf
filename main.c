@@ -32,6 +32,8 @@ int     main(int argc, char **argv)
     data->color1 = 0x87CEEB;
     data->color2 = 0xFF1493;
     data->chchchaaanges = 1;
+    data->isom = 0;
+    data->angle = 0.8;
     //mlx_pixel_put(data->mlx_ptr, data->win_ptr, (int)x, (int)y, #color);
     //bresenham(10, 10, 600, 300, data);
     draw(data);
