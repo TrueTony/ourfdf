@@ -20,3 +20,4 @@ int		counter(char *str, char c)
 	}
 	return (res);
 }
+//antooon + smbd = ?
