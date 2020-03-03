@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/02 19:29:26 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/03 18:36:02 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct  s_fdf
     int     **z_matrix;
     void    *mlx_ptr;
     void    *win_ptr;
+    int     chchchaaanges;
 }               t_fdf;
 
 void    read_file(char *file_name, t_fdf *data);
@@ -46,5 +47,8 @@ int	    get_next_line(const int fd, char **line);
 int		counter(char *str, char c);
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
 void	draw(t_fdf *data);
+void    zooom(t_fdf *data, int key);
+void     colors(int key, t_fdf *data);
+int    deal_key(int key, t_fdf *data);
 
 #endif

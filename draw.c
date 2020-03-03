@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/02 19:31:47 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/03 18:58:05 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	int		z;
 	int		z1;
 
-	z = data->z_matrix[(int)y][(int)x];
-	z1 = data->z_matrix[(int)y1][(int)x1];
+	z = data->z_matrix[(int)y][(int)x] * data->chchchaaanges;
+	z1 = data->z_matrix[(int)y1][(int)x1] * data->chchchaaanges;
 
 	x *= data->zoom;
 	y *= data->zoom;
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 
-	printf("z:%d %d\n", z, z1);
+	//printf("z:%d %d\n", z, z1);
 	data->color1 = (z || z1) ? data->color1 : data->color2;
 	//data->color1;
 	//data->color;
