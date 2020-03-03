@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/01 21:45:49 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:29:26 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct  s_fdf
     int     width;
     int     height;
     int     zoom;
-    int     color;
+    int     color1;
+    int     color2;
+    int     shift_x;
+    int     shift_y;
     int     **z_matrix;
     void    *mlx_ptr;
     void    *win_ptr;

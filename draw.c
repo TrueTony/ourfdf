@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brandres <brandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/01 22:07:11 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:31:47 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,18 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 
-	data->color = (z || z1) ? 0xe80c0c : 0xffffff;
+	printf("z:%d %d\n", z, z1);
+	data->color1 = (z || z1) ? data->color1 : data->color2;
+	//data->color1;
+	//data->color;
 
 	isometric(&x, &y, z);
 	isometric(&x1, &y1, z1);
 
-	x += 150;
-	y += 150;
-	x1 += 150;
-	y1 += 150;
+	x += data->shift_x;
+	y += data->shift_y;
+	x1 += data->shift_x;
+	y1 += data->shift_y;
 
 	x_step = x1 - x;
 	y_step = y1 - y;
@@ -69,7 +72,7 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	y_step /= max;
 	while((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color1);
 		x += x_step;
 		y += y_step;
 	}
