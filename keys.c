@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/03 21:10:38 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:01:38 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,6 @@ void    isom(t_fdf *data, int key)
         data->isom = 1;
     else
         data->isom = 0;
-}
-
-void     colors(int key, t_fdf *data)
-{
-    if (key == 18)
-    {
-        data->color1 = 0x00FFFF;
-        data->color2 = 0xADFF2F;
-    }
-    if (key == 18)
-        data->color1 = 0x00FFFF;
-    if (key == 29)
-        data->color1 = 0xE0FFFF;
-    if (key == 20)
-        data->color1 = 0xAFEEEE;
-    if (key == 21)
-        data->color1 = 0x7FFFD4;
-    if (key == 23)
-        data->color1 = 0x40E0D0;
-    if (key == 22)
-        data->color1 = 0x48D1CC;
-    if (key == 26)
-        data->color1 = 0x00CED1;
-    if (key == 28)
-        data->color1 = 0x5F9EA0;
-    if (key == 25)
-        data->color1 = 0x4682B4;
 }
 
 void	zooom(t_fdf *data, int key)
@@ -104,8 +77,8 @@ int    deal_key(int key, t_fdf *data)
         data->shift_x -= 10;
     if (key == 124 && data->shift_x < 5000)
         data->shift_x += 10;
-    if (100 - key >= 73 && 100 - key <= 92)
-        colors(key, data);
+    if (key == 18 || key == 19 || (key >= 20 && key<= 26) || key == 28 || key == 29)
+        change_colors(key, data);
 	if (key == 6 || key == 7)
 		zooom(data, key);
 	if (key == 29 || key == 27 || key == 24)

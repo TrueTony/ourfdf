@@ -1,9 +1,19 @@
 #include "fdf.h"
 
+int		closepg(void *param)
+{
+	(void)param;
+	exit(0);
+}
+
 int     main(int argc, char **argv)
 {
     t_fdf   *data;
+    int     widthofmap;
+    int     heightofmap;
 
+    widthofmap = 1400;
+    heightofmap = 1200;
     if (argc == 2)
     {
         data = (t_fdf*)malloc(sizeof(t_fdf));
@@ -25,18 +35,21 @@ int     main(int argc, char **argv)
         }
         */
     data->mlx_ptr = mlx_init();
-    data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
-    data->zoom = 20;
-    data->shift_x = 300;
-    data->shift_y = 300;
-    data->color1 = 0x87CEEB;
-    data->color2 = 0xFF1493;
+    data->win_ptr = mlx_new_window(data->mlx_ptr, widthofmap, heightofmap, "FDF");
+    data->zoom = minn(((widthofmap/2)/(data->width/2))/2, \
+                 ((heightofmap/2)/(data->width/2))/2);
+    //printf("z:%d\n", data->zoom);
+    //printf("1:%d %d\n", data->width, data->height);
+    data->shift_x = (widthofmap / 2) - ((data->width * data->zoom) / 2);
+    data->shift_y = (heightofmap / 2) - ((data->height * data->zoom) / 2);
+    //printf("2:%d %d\n", data->shift_x, data->shift_y);
+    data->color1 = 0xFFFFFF;
+    data->color2 = 0xFFFFFF;
     data->chchchaaanges = 1;
     data->isom = 0;
     data->angle = 0.8;
-    //mlx_pixel_put(data->mlx_ptr, data->win_ptr, (int)x, (int)y, #color);
-    //bresenham(10, 10, 600, 300, data);
     draw(data);
+    mlx_hook(data->win_ptr, 17, 0, closepg, data);
     mlx_key_hook(data->win_ptr, deal_key, data);
     mlx_loop(data->mlx_ptr);
     }

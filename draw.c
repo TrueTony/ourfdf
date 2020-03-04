@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/03 21:07:09 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:39:49 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 int		maxn(int a, int b)
 {
 	if (a > b)
+		return (a);
+	return (b);
+}
+
+int		minn(int a, int b)
+{
+	if (a < b)
 		return (a);
 	return (b);
 }
@@ -52,17 +59,12 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 
-	//printf("z:%d %d\n", z, z1);
-	data->color1 = (z || z1) ? 0x87CEEB : 0xFF1493;
-	//data->color1;
-	//data->color;
-
+	data->color = (z || z1) ? data->color1 : data->color2;
 	if (data->isom)
 	{
 		isometric(&x, &y, z, data->angle);
 		isometric(&x1, &y1, z1, data->angle);
 	}
-
 	x += data->shift_x;
 	y += data->shift_y;
 	x1 += data->shift_x;
@@ -75,7 +77,7 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	y_step /= max;
 	while((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color1);
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
 		x += x_step;
 		y += y_step;
 	}
@@ -100,4 +102,5 @@ void	draw(t_fdf *data)
 		  }
 		  y++;
 	  }
+	  print_menu(data);
   }

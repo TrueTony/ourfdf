@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/03 21:02:55 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:39:25 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct  s_fdf
     int     width;
     int     height;
     int     zoom;
+    int     color;
     int     color1;
     int     color2;
     int     shift_x;
@@ -50,7 +51,10 @@ int		counter(char *str, char c);
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
 void	draw(t_fdf *data);
 void    zooom(t_fdf *data, int key);
-void     colors(int key, t_fdf *data);
-int    deal_key(int key, t_fdf *data);
+void    colors(int key, t_fdf *data);
+int     deal_key(int key, t_fdf *data);
+void    change_colors(int key, t_fdf *data);
+int		minn(int a, int b);
+void	print_menu(t_fdf *data);
 
 #endif

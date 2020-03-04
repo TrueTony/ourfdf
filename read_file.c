@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 15:05:18 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/01 20:18:23 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:16:59 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@ int     get_height(char *file_name)
     int     fd;
     char    *line;
     int     height;
+    int     first_line;
 
     height = 0;
-    fd = open(file_name, O_RDONLY, 0);
-    while (get_next_line(fd, &line))
+    if ((fd = open(file_name, O_RDONLY)) > 0)
     {
-        height++;
-        free(line);
+        while (get_next_line(fd, &line))
+        {
+            height++;
+            free(line);
+        }
+        close(fd);
+        return (height);
     }
-    close(fd);
-    return (height);
+    ft_putstr("File does not exists\n");
+    exit(1);
 }
 
 int     get_width(char *file_name)
@@ -35,12 +40,16 @@ int     get_width(char *file_name)
     char    *line;
     int     width;
 
-    fd = open(file_name, O_RDONLY, 0);
-    get_next_line(fd, &line);
-    width = counter(line, ' '); // look your split
-    free(line);
-    close(fd);
-    return (width);
+    if ((fd = open(file_name, O_RDONLY)) > 0)
+    {
+        get_next_line(fd, &line);
+        width = counter(line, ' ');
+        free(line);
+        close(fd);
+        return (width);
+    }
+    ft_putstr("No file\n");
+    exit(1);
 }
 
 void    fill_matrix(int *z_line, char *line)
