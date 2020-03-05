@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/04 20:39:25 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/05 18:52:03 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int     deal_key(int key, t_fdf *data);
 void    change_colors(int key, t_fdf *data);
 int		minn(int a, int b);
 void	print_menu(t_fdf *data);
+
+char			**strsplit2(char const *str, char c);
 
 #endif
