@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 15:05:18 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/05 19:55:12 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/06 19:21:34 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int     get_height(char *file_name)
     height = 0;
     if ((fd = open(file_name, O_RDONLY)) > 0)
     {
-        //fd = open(file_name, O_RDONLY);
         while (get_next_line(fd, &line))
         {
             height++;
@@ -30,6 +29,7 @@ int     get_height(char *file_name)
         close(fd);
         return (height);
     }
+    close(fd);
     ft_putstr("File does not exists\n");
     exit(1);
 }
@@ -42,29 +42,15 @@ int     get_width(char *file_name)
 
     if ((fd = open(file_name, O_RDONLY)) > 0)
     {
-        //fd = open(file_name, O_RDONLY);
         get_next_line(fd, &line);
         width = counter(line, ' ');
         free(line);
         close(fd);
         return (width);
     }
+    close(fd);
     ft_putstr("File does not exists\n");
     exit(1);
-}
-
-int     wrong_width_file(char **str, int originallen)
-{
-    int     i;
-
-    i = 0;
-    while (str[i])
-    {
-        i++;
-    }
-    if (i != originallen)
-        return (1);
-    return (0);
 }
 
 int    fill_matrix(int *z_line, char *line, t_fdf *data)
@@ -90,7 +76,6 @@ int    fill_matrix(int *z_line, char *line, t_fdf *data)
         i++;
     }
     free(nums);
-    printf("\n");
     return (i);
 }
 
@@ -100,7 +85,6 @@ void    read_file(char *file_name, t_fdf *data)
     int     i;
     char    *line;
 
-
     data->width = get_width(file_name);
     data->height = get_height(file_name);
     if (!(data->z_matrix = (int**)malloc(sizeof(int*) * (data->height + 1))))
@@ -108,17 +92,16 @@ void    read_file(char *file_name, t_fdf *data)
     i = 0;
     while (i <= data->height)
     {
-        if (!(data->z_matrix[i] = (int*)malloc(sizeof(int) * (data->width + 1))))
+        if (!(data->z_matrix[i++] = (int*)malloc(sizeof(int) * \
+            (data->width + 1))))
             return ;
-        i++;
     }
     fd = open(file_name, O_RDONLY);
     i = 0;
     while (get_next_line(fd, &line))
     {
-        fill_matrix(data->z_matrix[i], line, data);
+        fill_matrix(data->z_matrix[i++], line, data);
         free(line);
-        i++;
     }
     data->z_matrix[i] = NULL;
     close(fd);

@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/04 20:01:38 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/06 19:37:11 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,9 @@ void    change_angle(t_fdf *data, int key)
     if (data->angle == 361)
         data->angle = 0;
     if (key == 5)
-    {
         data->angle -= step;
-    }
     if (key == 4)
-    {
         data->angle += step;
-    }
 }
 
 void    isom(t_fdf *data, int key)
@@ -50,7 +46,6 @@ void	zooom(t_fdf *data, int key)
 		data->zoom -= step;
 	if (key == 7 && (data->zoom + step < 1500))
 		data->zoom += step;
-	//printf("%d %d\n", data->zoom, step);
 }
 
 void	change_z(t_fdf *data,int key)
@@ -60,15 +55,14 @@ void	change_z(t_fdf *data,int key)
 	step = 1;
 	if (key == 29)
 		data->chchchaaanges *= -1;
-	if (key == 24 && data->chchchaaanges < 100)
+	if (key == 24 && data->chchchaaanges < 50)
 		data->chchchaaanges += step;
-	if (key == 27 && data && data->chchchaaanges > -100)
+	if (key == 27 && data && data->chchchaaanges > -50)
 		data->chchchaaanges -= step;
 }
 
 int    deal_key(int key, t_fdf *data)
 {
-    printf("%d\n", key);
     if (key == 126 && data->shift_y > -5000)
         data->shift_y -= 10;
     if (key == 125 && data->shift_y < 5000)
@@ -77,7 +71,8 @@ int    deal_key(int key, t_fdf *data)
         data->shift_x -= 10;
     if (key == 124 && data->shift_x < 5000)
         data->shift_x += 10;
-    if (key == 18 || key == 19 || (key >= 20 && key<= 26) || key == 28 || key == 29)
+    if (key == 18 || key == 19 || (key >= 20 && key <= 26) \
+        || key == 28 || key == 29)
         change_colors(key, data);
 	if (key == 6 || key == 7)
 		zooom(data, key);

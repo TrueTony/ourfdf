@@ -6,36 +6,12 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/04 20:39:49 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:05:08 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-
-//#define MAX(a, b) (a > b ? a : b)
-//#define MOD(a) (a < 0) ? -a : a
-
-int		maxn(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-int		minn(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int		modn(int a)
-{
-	if (a < 0)
-		return (a * -1);
-	return (a);
-}
 
 void	isometric(float *x, float *y, int z, float angle)
 {
@@ -43,8 +19,16 @@ void	isometric(float *x, float *y, int z, float angle)
 	*y = (*x + *y) * sin(angle) - z;
 }
 
-void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
+void	bresenham(float xx[2], float yy[2], t_fdf *data)
 {
+
+	float 	x = xx[0];
+	float	x1 = xx[1];
+	float	y = yy[0];
+	float	y1 = yy[1];
+	printf("%f %f %f %f\n", x, x1, y, y1);
+
+
 	float	x_step;
 	float	y_step;
 	int		max;
@@ -82,25 +66,38 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 		y += y_step;
 	}
 }
+/*
+void	pre_bresenham(float x, float y, float x1, float y1, t_fdf *data)
+{
 
+}
+*/
 void	draw(t_fdf *data)
   {
-	  int	x;
-	  int	y;
+	float	x[2];
+	float	y[2];
 
-	  y = 0;
-	  while(y < data->height)
-	  {
-		  x = 0;
-		  while(x < data->width)
-		  {
-			if (x < data->width - 1)
-				bresenham(x, y, x + 1, y, data);
-			if (y < data->height - 1)
-				bresenham(x, y, x, y + 1, data);
-			x++;
-		  }
-		  y++;
-	  }
-	  print_menu(data);
+	y[0] = 0;
+	while(y[0] < data->height)
+	{
+		x[0] = 0;
+		while(x[0] < data->width)
+		{
+			if (x[0] < data->width - 1)
+			{
+				x[1] = x[0] + 1;
+				y[1] = y[0];
+				bresenham(x, y, data);
+			}
+			if (y[0] < data->height - 1)
+			{
+				x[1] = x[0];
+				y[1] = y[0] + 1;
+				bresenham(x, y, data);
+			}
+			x[0]++;
+		}
+		y[0]++;
+	}
+	print_menu(data);
   }
