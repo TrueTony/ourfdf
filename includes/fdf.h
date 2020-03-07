@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 14:08:59 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:21:12 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include "sys/types.h"
 # include "sys/uio.h"
 
-# include "libft/libft.h"
-# include "minilibx_macos/mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx_macos/mlx.h"
+# include <math.h>
 
 # include <stdio.h>
 # include <string.h>

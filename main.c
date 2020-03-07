@@ -1,4 +1,16 @@
-#include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/07 16:18:34 by ksenaida          #+#    #+#             */
+/*   Updated: 2020/03/07 16:27:06 by ksenaida         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/fdf.h"
 
 int		close_by_x(void *param)
 {
@@ -17,6 +29,19 @@ void    init_fdf(t_fdf *data, int widthofmap, int heightofmap)
     data->chchchaaanges = 1;
     data->isom = 0;
     data->angle = 0.8;
+}
+
+void    free_matrix(t_fdf *data)
+{
+    int i;
+
+    i = 0;
+    while (i <= data->height)
+    {
+        free(data->z_matrix[i]);
+        i++;
+    }
+    free(data->z_matrix);
 }
 
 int     main(int argc, char **argv)
@@ -39,6 +64,8 @@ int     main(int argc, char **argv)
         mlx_hook(data->win_ptr, 17, 0, close_by_x, data);
         mlx_key_hook(data->win_ptr, deal_key, data);
         mlx_loop(data->mlx_ptr);
+        free_matrix(data);
+        free(data);
     }
     else
         ft_putstr("Usage: ./fdf MAP_FILE\n");

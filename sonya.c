@@ -6,11 +6,11 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:49:44 by brandres          #+#    #+#             */
-/*   Updated: 2020/03/04 20:39:18 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:27:11 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
 void	print_menu(t_fdf *data)
 {

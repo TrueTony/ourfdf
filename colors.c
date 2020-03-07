@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counter.c                                          :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 19:34:30 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/06 19:34:33 by ksenaida         ###   ########.fr       */
+/*   Created: 2020/03/04 17:39:09 by ksenaida          #+#    #+#             */
+/*   Updated: 2020/03/07 16:26:54 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
-int		counter(char *str, char c)
+void     change_colors(int key, t_fdf *data)
 {
-	size_t	i;
-	size_t	res;
-
-	i = 0;
-	res = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != c)
-		{
-			res++;
-			while (str[i] != c && str[i] != '\0')
-				i++;
-		}
-		while (str[i] == c)
-			i++;
-	}
-	return (res);
+    if (key == 18)
+    {
+        data->color1 = 0xFFFFFF;
+        data->color2 = 0xFFFFFF;
+    }
+    if (key == 19)
+    {
+        data->color1 = 0xFF8C00;
+        data->color2 = 0x1E90FF;
+    }
+    if (key == 20)
+    {
+        data->color1 = 0x87CEEB;
+        data->color2 = 0xFF1493;
+    }
 }

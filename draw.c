@@ -6,12 +6,11 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 14:45:25 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:26:58 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <math.h>
+#include "includes/fdf.h"
 
 void	isometric(float *x, float *y, int z, float angle)
 {
@@ -39,7 +38,7 @@ void	bresenham(t_point start, t_point end, t_fdf *data)
 	}
 }
 
-t_point		pre_bresenham(float x, float y, t_fdf *data, int c)
+t_point		pre_bresenham(float x, float y, t_fdf *data)
 {
 	t_point	p;
 
@@ -59,7 +58,7 @@ void	draw(t_fdf *data)
 {
 	float	x;
 	float	y;
-	t_point	*p;
+	//t_point	*p;
 
 	//p = (t_point*)malloc(sizeof(t_point));
 	y = 0;
@@ -69,9 +68,9 @@ void	draw(t_fdf *data)
 		while(x < data->width)
 		{
 			if (x < data->width - 1)
-				bresenham(pre_bresenham(x, y, data, 0), pre_bresenham(x + 1, y, data, 1), data);
+				bresenham(pre_bresenham(x, y, data), pre_bresenham(x + 1, y, data), data);
 			if (y < data->height - 1)
-				bresenham(pre_bresenham(x, y, data, 0), pre_bresenham(x, y + 1, data, 1), data);
+				bresenham(pre_bresenham(x, y, data), pre_bresenham(x, y + 1, data), data);
 			x++;
 		}
 		y++;

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_func.c                                         :+:      :+:    :+:   */
+/*   counter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 19:39:15 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/06 19:39:36 by ksenaida         ###   ########.fr       */
+/*   Created: 2020/03/06 19:34:30 by ksenaida          #+#    #+#             */
+/*   Updated: 2020/03/07 16:26:56 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
-int		maxn(int a, int b)
+int		counter(char *str, char c)
 {
-	if (a > b)
-		return (a);
-	return (b);
-}
+	size_t	i;
+	size_t	res;
 
-int		minn(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int		modn(int a)
-{
-	if (a < 0)
-		return (a * -1);
-	return (a);
+	i = 0;
+	res = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != c)
+		{
+			res++;
+			while (str[i] != c && str[i] != '\0')
+				i++;
+		}
+		while (str[i] == c)
+			i++;
+	}
+	return (res);
 }

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brandres <brandres@student.42.fr>          +#+  +:+       +#+         #
+#    By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/07 15:18:38 by ksenaida          #+#    #+#              #
-#    Updated: 2020/03/07 16:11:43 by brandres         ###   ########.fr        #
+#    Updated: 2020/03/07 16:27:26 by ksenaida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = src/main.c src/draw.c src/read_file.c src/keys.c src/add_func.c\
-	src/colors.c src/get_next_line.c src/sonya.c src/counter.c
+SRC = main.c draw.c read_file.c keys.c add_func.c\
+	colors.c get_next_line.c sonya.c counter.c
 OBJ = $(SRC:.c=.o)
 FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 LIBFT = $(LIBFT_DIR)libft.a

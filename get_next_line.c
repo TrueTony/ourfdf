@@ -6,11 +6,11 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:43:40 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/06 19:36:19 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:27:01 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
 int		ft_new_line(char **str, char **line, int fd)
 {

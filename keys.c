@@ -6,11 +6,11 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 15:10:54 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:27:03 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
 void    disco(t_fdf *data, int key)
 {
@@ -33,7 +33,7 @@ void    disco(t_fdf *data, int key)
         data->color2 = 0x008B8B;
 }
 
-void    isom(t_fdf *data, int key)
+void    isom(t_fdf *data)
 {
     if (data->isom == 0)
         data->isom = 1;
@@ -67,7 +67,7 @@ void	change_z(t_fdf *data,int key)
 		data->chchchaaanges -= step;
 }
 
-void    hide(t_fdf *data,int key)
+void    hide(t_fdf *data)
 {
     data->color1 =0x000000;
     data->color2 =0x000000;
@@ -91,11 +91,11 @@ int    deal_key(int key, t_fdf *data)
 	if (key == 29 || key == 27 || key == 24)
 		change_z(data, key);
     if (key == 49)
-        isom(data, key);
+        isom(data);
     if (key == 2)
         disco(data, key);
     if (key == 4)
-        hide(data, key);
+        hide(data);
     if (key == 53)
         exit(1);
     mlx_clear_window(data->mlx_ptr, data->win_ptr);
