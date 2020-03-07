@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 19:38:31 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/07 20:05:50 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	disco(t_fdf *data, int key)
 	float	step;
 
 	step = 0.1;
+	data->isom = 1;
 	if (data->angle < -5.2)
 		data->angle = 1;
 	if (data->angle > 7.2)
@@ -97,7 +98,11 @@ int		deal_key(int key, t_fdf *data)
 	if (key == 4)
 		hide(data);
 	if (key == 53)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		free(data);
 		exit(1);
+	}
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data);
 	return (0);
