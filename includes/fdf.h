@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/06 21:04:46 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 14:08:59 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include <string.h>
 
 # define BUFF_SIZE  16
+
+typedef struct   s_point
+{
+    float   x;
+    float   y;
+    int     z;
+}               t_point;
+
 
 typedef struct  s_fdf
 {
@@ -48,7 +56,7 @@ typedef struct  s_fdf
 void    read_file(char *file_name, t_fdf *data);
 int	    get_next_line(const int fd, char **line);
 int		counter(char *str, char c);
-void	bresenham(float xx[2], float yy[2], t_fdf *data);
+void	bresenham(t_point start, t_point end, t_fdf *data);
 void	draw(t_fdf *data);
 void    zooom(t_fdf *data, int key);
 void    colors(int key, t_fdf *data);

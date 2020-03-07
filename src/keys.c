@@ -6,25 +6,31 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/06 19:37:11 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 15:10:54 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    change_angle(t_fdf *data, int key)
+void    disco(t_fdf *data, int key)
 {
     float   step;
 
     step = 0.1;
-    if (data->angle == -1)
-        data->angle = 360;
-    if (data->angle == 361)
-        data->angle = 0;
-    if (key == 5)
+    if (data->angle < -5.2)
+        data->angle = 1;
+    if (data->angle > 7.2)
+        data->angle = 1;
+    if (key == 2)
         data->angle -= step;
-    if (key == 4)
-        data->angle += step;
+    if ((int)(data->angle * 10) % 2 == 0)
+        data->color1 = 0x98FB98;
+    else
+        data->color1 = 0xF08080;
+    if ((int)(data->angle * 10) % 3 == 0)
+        data->color2 = 0xF0E68C;
+    else
+        data->color2 = 0x008B8B;
 }
 
 void    isom(t_fdf *data, int key)
@@ -61,6 +67,12 @@ void	change_z(t_fdf *data,int key)
 		data->chchchaaanges -= step;
 }
 
+void    hide(t_fdf *data,int key)
+{
+    data->color1 =0x000000;
+    data->color2 =0x000000;
+}
+
 int    deal_key(int key, t_fdf *data)
 {
     if (key == 126 && data->shift_y > -5000)
@@ -78,10 +90,12 @@ int    deal_key(int key, t_fdf *data)
 		zooom(data, key);
 	if (key == 29 || key == 27 || key == 24)
 		change_z(data, key);
-    if (key == 34)
+    if (key == 49)
         isom(data, key);
-    if (key == 5 || key == 4)
-        change_angle(data, key);
+    if (key == 2)
+        disco(data, key);
+    if (key == 4)
+        hide(data, key);
     if (key == 53)
         exit(1);
     mlx_clear_window(data->mlx_ptr, data->win_ptr);
