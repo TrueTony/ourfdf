@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:47:55 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 16:27:03 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 17:35:07 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	zooom(t_fdf *data, int key)
 		step = 1;
 	if (key == 6 && (data->zoom - step > 0))
 		data->zoom -= step;
-	if (key == 7 && (data->zoom + step < 1500))
+	if (key == 7 && (data->zoom + step < 500))
 		data->zoom += step;
 }
 
