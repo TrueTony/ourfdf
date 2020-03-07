@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:18:34 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 20:24:41 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 20:43:57 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ int		main(int argc, char **argv)
 	heightofmap = 1200;
 	if (argc != 2)
 	{
-        ft_putstr("Usage: ./fdf MAP_FILE\n");
-        return (0);
-    }
-    data = (t_fdf*)malloc(sizeof(t_fdf));
-    data->z_matrix = NULL;
-    read_file(argv[1], data);
-    data->mlx_ptr = mlx_init();
-    data->win_ptr = mlx_new_window(data->mlx_ptr, widthofmap, \
-        heightofmap, "FDF");
-    init_fdf(data, widthofmap, heightofmap);
-    draw(data);
-    mlx_hook(data->win_ptr, 17, 0, close_by_x, data);
-    mlx_hook(data->win_ptr, 2, 0, deal_key, data);
-    mlx_loop(data->mlx_ptr);
-    free_matrix(data);
-    free(data);
+		ft_putstr("Usage: ./fdf MAP_FILE\n");
+		return (0);
+	}
+	data = (t_fdf*)malloc(sizeof(t_fdf));
+	data->z_matrix = NULL;
+	read_file(argv[1], data);
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, widthofmap, \
+		heightofmap, "FDF");
+	init_fdf(data, widthofmap, heightofmap);
+	draw(data);
+	mlx_hook(data->win_ptr, 17, 0, close_by_x, data);
+	mlx_hook(data->win_ptr, 2, 0, deal_key, data);
+	mlx_loop(data->mlx_ptr);
+	free_matrix(data);
+	free(data);
 	return (0);
 }
