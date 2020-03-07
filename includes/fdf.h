@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 16:21:12 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 20:36:26 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "fcntl.h"
 # include "sys/types.h"
 # include "sys/uio.h"
-
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
@@ -34,7 +33,6 @@ typedef struct   s_point
     float   y;
     int     z;
 }               t_point;
-
 
 typedef struct  s_fdf
 {
@@ -68,7 +66,7 @@ void	print_menu(t_fdf *data);
 int		maxn(int a, int b);
 int		minn(int a, int b);
 int		modn(int a);
-
-char			**strsplit2(char const *str, char c);
+void	disco(t_fdf *data, int key);
+void	hide(t_fdf *data);
 
 #endif
