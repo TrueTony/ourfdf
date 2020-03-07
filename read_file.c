@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 15:05:18 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 17:30:04 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 19:34:19 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,67 +19,57 @@ int     get_height(char *file_name)
     int     height;
 
     height = 0;
-    if ((fd = open(file_name, O_RDONLY)) > 0)
+    fd = open(file_name, O_RDONLY);
+    while (get_next_line(fd, &line) == 1)
     {
-        while (get_next_line(fd, &line))
-        {
-            height++;
-            free(line);
-        }
-        if (height == 0)
-        {
-            ft_putstr("Error: incorrect file\n");
-            exit(1);
-        }
-        close(fd);
-        return (height);
-    }
-    close(fd);
-    ft_putstr("File does not exists\n");
-    exit(1);
-}
-
-int     get_width(char *file_name)
-{
-    int     fd;
-    char    *line;
-    int     width;
-    int     tmp;
-
-    if ((fd = open(file_name, O_RDONLY)) > 0)
-    {
-        tmp = get_next_line(fd, &line);
-        if (tmp == 0 || (counter(line, ' ')) == 0)
-        {
-            if (tmp)
-                free(line);
-            ft_putstr("Error: incorrect file\n");
-            exit(1);
-        }
-        width = counter(line, ' ');
+        height++;
         free(line);
-        close(fd);
-        return (width);
     }
     close(fd);
-    ft_putstr("File does not exists\n");
-    exit(1);
+    if (height == 0)
+    {
+        ft_putstr("Error: incorrect file\n");
+        exit(1);
+    }
+    return (height);
 }
 
-int    fill_matrix(int *z_line, char *line, t_fdf *data)
+int     get_width(char *file, t_fdf *data)
+{
+	int			fd;
+	char		*line;
+	int		width;
+    int		height;
+
+	width = 0;
+	fd = open(file, O_RDONLY, 0);
+	get_next_line(fd, &line);
+	width = counter(line, ' ');
+	free(line);
+    height = data->height - 1;
+	while (height--)
+	{
+		get_next_line(fd, &line);
+		if (width != counter(line, ' '))
+		{
+			free(line);
+			close(fd);
+			return (0);
+		}
+		width = counter(line, ' ');
+		free(line);
+	}
+	close(fd);
+	return (width);
+}
+
+void    fill_matrix(int *z_line, char *line)
 {
     int     i;
     char    **nums;
 
     i = 0;
     nums = ft_strsplit(line, ' ');
-    while (nums[i] != NULL)
-        i++;
-    if (i != data->width)
-    {
-        ft_putstr("Error: incorrect file\n");
-        exit(1);
-    }
     i = 0;
     while (nums[i])
     {
@@ -88,7 +78,17 @@ int    fill_matrix(int *z_line, char *line, t_fdf *data)
         i++;
     }
     free(nums);
-    return (i);
+}
+
+void    width_and_height(char *file_name, t_fdf *data)
+{
+    data->height = get_height(file_name);
+    data->width = get_width(file_name, data);
+    if (!data->width)
+	{
+		ft_putstr("Error: incorrect file\n");
+		exit(1);
+	}
 }
 
 void    read_file(char *file_name, t_fdf *data)
@@ -97,15 +97,7 @@ void    read_file(char *file_name, t_fdf *data)
     int     i;
     char    *line;
 
-    /*
-    if (!((fd = open(file_name, O_RDONLY)) >= 0))
-    {
-        ft_putstr("Error: incorrect file\n");
-        exit(1);
-    }
-    */
-    data->width = get_width(file_name);
-    data->height = get_height(file_name);
+    width_and_height(file_name, data);
     if (!(data->z_matrix = (int**)malloc(sizeof(int*) * (data->height + 1))))
         return ;
     i = 0;
@@ -119,7 +111,7 @@ void    read_file(char *file_name, t_fdf *data)
     i = 0;
     while (get_next_line(fd, &line))
     {
-        fill_matrix(data->z_matrix[i++], line, data);
+        fill_matrix(data->z_matrix[i++], line);
         free(line);
     }
     data->z_matrix[i] = NULL;
