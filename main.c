@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:18:34 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 16:27:06 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 17:11:50 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int     main(int argc, char **argv)
     if (argc == 2)
     {
         data = (t_fdf*)malloc(sizeof(t_fdf));
+        data->z_matrix = NULL;
         read_file(argv[1], data);
         data->mlx_ptr = mlx_init();
         data->win_ptr = mlx_new_window(data->mlx_ptr, widthofmap, \
