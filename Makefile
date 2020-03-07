@@ -5,40 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/07 15:18:38 by ksenaida          #+#    #+#              #
-#    Updated: 2020/03/07 16:27:26 by ksenaida         ###   ########.fr        #
+#    Created: 2020/03/07 20:46:43 by ksenaida          #+#    #+#              #
+#    Updated: 2020/03/07 20:57:31 by ksenaida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = main.c draw.c read_file.c keys.c add_func.c\
+LIB = ./libft/
+LIBLIBX = ./minilibx_macos/
+LIBFT = $(LIB)libft.a
+LIBLIBX_F = $(LIBLIBX)libmlx.a
+SRC = main.c draw.c read_file.c keys.c keys2.c add_func.c \
 	colors.c get_next_line.c sonya.c counter.c
 OBJ = $(SRC:.c=.o)
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
-LIBFT = $(LIBFT_DIR)libft.a
-LIBFT_DIR = ./libft/
-FLAGS = -Wall -Wextra -Werror
+HDR = ./includes/fdf.h
+CC = gcc
+FLAGS =  -Wall -Wextra -Werror
+FRAME = -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 %.o: %.c
-	@gcc -c $(FLAGS) $<
+	$(CC) -c $(FLAGS) $<
 
-$(NAME): $(OBJ)
-	@$(MAKE) -C $(LIBFT_DIR)
-	@gcc -o fdf $(FLAGS) $(OBJ) $(LIBFT) $(FRAMEWORK)
+$(NAME): $(OBJ) $(HDR) $(SRC)
+	$(MAKE) -C $(LIB)
+	$(MAKE) -C $(LIBLIBX)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIBLIBX_F) $(FRAME)
 
 clean:
-	@/bin/rm -f $(OBJ)
-	@$(MAKE) -sC $(LIBFT_DIR) clean
+	rm -rf $(OBJ)
+	$(MAKE) -C $(LIB) clean
+	$(MAKE) -C $(LIBLIBX) clean
 
 fclean: clean
-	@/bin/rm -f $(NAME)
-	@$(MAKE) -sC $(LIBFT_DIR) fclean
+	rm -rf $(NAME)
+	$(MAKE) -C $(LIB) fclean
+	$(MAKE) -C $(LIBLIBX) clean
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
-
-.PHONY: all clean fclean re
+re: fclean all
