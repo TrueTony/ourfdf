@@ -6,12 +6,11 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 19:10:15 by ljerk             #+#    #+#             */
-/*   Updated: 2020/03/07 21:06:11 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 21:17:40 by brandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fdf.h"
-#include <errno.h>
 
 int		get_height(char *file_name)
 {
