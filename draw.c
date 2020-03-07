@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:09:09 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 19:06:16 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/07 21:03:36 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_point		pre_bresenham(float x, float y, t_fdf *data)
 
 	p.x = x;
 	p.y = y;
-	p.z = data->z_matrix[(int)y][(int)x] * data->chchchaaanges;
+	p.z = data->z_mat[(int)y][(int)x] * data->chchchaaanges;
 	p.x *= data->zoom;
 	p.y *= data->zoom;
 	if (data->isom)

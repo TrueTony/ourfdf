@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:42:53 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 20:36:26 by ksenaida         ###   ########.fr       */
+/*   Updated: 2020/03/07 21:02:50 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct  s_fdf
     int     color2;
     int     shift_x;
     int     shift_y;
-    int     **z_matrix;
+    int     **z_mat;
     void    *mlx_ptr;
     void    *win_ptr;
     int     chchchaaanges;

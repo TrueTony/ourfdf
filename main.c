@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:18:34 by ksenaida          #+#    #+#             */
-/*   Updated: 2020/03/07 20:43:57 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/07 21:03:18 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	free_matrix(t_fdf *data)
 	i = 0;
 	while (i <= data->height)
 	{
-		free(data->z_matrix[i]);
+		free(data->z_mat[i]);
 		i++;
 	}
-	free(data->z_matrix);
+	free(data->z_mat);
 }
 
 int		main(int argc, char **argv)
@@ -58,7 +58,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	data = (t_fdf*)malloc(sizeof(t_fdf));
-	data->z_matrix = NULL;
+	data->z_mat = NULL;
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, widthofmap, \

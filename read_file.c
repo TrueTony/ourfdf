@@ -6,7 +6,7 @@
 /*   By: ksenaida <ksenaida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 19:10:15 by ljerk             #+#    #+#             */
-/*   Updated: 2020/03/07 20:59:24 by brandres         ###   ########.fr       */
+/*   Updated: 2020/03/07 21:06:11 by ksenaida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		get_height(char *file_name)
 	return (height);
 }
 
-int		get_width(char *file_name, t_fdf *data)
+int		get_width(char *file_name, t_fdf *d)
 {
 	int		fd;
 	char	*line;
@@ -47,7 +47,7 @@ int		get_width(char *file_name, t_fdf *data)
 	get_next_line(fd, &line);
 	width = counter(line, ' ');
 	free(line);
-	height = data->height - 1;
+	height = d->height - 1;
 	while (height--)
 	{
 		get_next_line(fd, &line);
@@ -81,11 +81,11 @@ void	fill_matrix(int *z_line, char *line)
 	free(nums);
 }
 
-int		width_and_height(char *file_name, t_fdf *data)
+int		width_and_height(char *file_name, t_fdf *d)
 {
-	data->height = get_height(file_name);
-	data->width = get_width(file_name, data);
-	if (!data->width)
+	d->height = get_height(file_name);
+	d->width = get_width(file_name, d);
+	if (!d->width)
 	{
 		ft_putstr("Error: incorrect file\n");
 		exit(1);
@@ -93,34 +93,30 @@ int		width_and_height(char *file_name, t_fdf *data)
 	return (1);
 }
 
-void	read_file(char *file, t_fdf *data)
+void	read_file(char *file, t_fdf *d)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	if (width_and_height(file, data))
+	if (width_and_height(file, d))
 	{
-		if (!(data->z_matrix = (int**)malloc(sizeof(int*) * \
-						(data->height + 1))))
+		if (!(d->z_mat = (int**)malloc(sizeof(int*) * (d->height + 1))))
 			return ;
 		i = 0;
-		while (i <= data->height)
-			if (!(data->z_matrix[i++] = (int*)malloc(sizeof(int) * \
-				(data->width + 1))))
+		while (i <= d->height)
+			if (!(d->z_mat[i++] = (int*)malloc(sizeof(int) * (d->width + 1))))
 				return ;
 		fd = open(file, O_RDONLY, 0);
 		i = 0;
 		while (get_next_line(fd, &line))
 		{
-			fill_matrix(data->z_matrix[i++], line);
+			fill_matrix(d->z_mat[i++], line);
 			free(line);
 		}
 		close(fd);
+		return ;
 	}
-	else
-	{
-		ft_putstr("Error: incorrect file\n");
-		exit(0);
-	}
+	ft_putstr("Error: incorrect file\n");
+	exit(0);
 }
